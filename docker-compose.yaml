@@ -1,0 +1,34 @@
+version: "3"
+services:
+  prometheus:
+    image: prom/prometheus
+    hostname: prometheus-server
+    container_name: prometheus-server
+    volumes:
+      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
+      - "./rules.yml:/etc/prometheus/rules.yml"
+    networks:
+      - prometheus
+    ports:
+      - 9090:9090
+  node-exporter:
+    image: prom/node-exporter
+    hostname: prometheus-node-exporter
+    container_name: prometheus-node-exporter
+    networks:
+      - prometheus
+    ports:
+      - 9100:9100
+  alert-manager:
+    image: prom/alertmanager
+    hostname: prometheus-alertmanager
+    container_name: prometheus-alertmanager
+    volumes:
+      - "./alertmanager.yml:/alertmanager/alertmanager.yml"
+    networks:
+      - prometheus
+    ports:
+      - 9093:9093
+networks:
+  prometheus:
+    driver: bridge
