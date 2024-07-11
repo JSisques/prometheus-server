@@ -5,8 +5,8 @@ services:
     hostname: prometheus-server
     container_name: prometheus-server
     volumes:
-      - "./prometheus.yml:/etc/prometheus/prometheus.yml"
-      - "./rules.yml:/etc/prometheus/rules.yml"
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./rules.yml:/etc/prometheus/rules.yml
     networks:
       - prometheus
     ports:
@@ -24,7 +24,7 @@ services:
     hostname: prometheus-alertmanager
     container_name: prometheus-alertmanager
     volumes:
-      - "./alertmanager.yml:/alertmanager/alertmanager.yml"
+      - /alertmanager.yml:/alertmanager/alertmanager.yml
     networks:
       - prometheus
     ports:
