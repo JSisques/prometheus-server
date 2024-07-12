@@ -146,6 +146,18 @@ process_resident_memory_bytes{instance=~"server1|server2", job="my_job"}
 
 ---
 
+### 11. Tiempo que lleva encendido cada servidor (en horas)
+
+Consulta para obtener el tiempo que lleva encendido cada servidor en horas decimales.
+
+```promql
+(time() - node_boot_time_seconds) / 3600
+```
+
+#### Explicación:
+
+`node_boot_time_seconds` muestra el tiempo UNIX en segundos desde que el servidor se inició por última vez. La consulta `(time() - node_boot_time_seconds) / 3600` calcula el tiempo transcurrido desde el inicio del servidor hasta el momento actual y lo convierte de segundos a horas.
+
 ## Conclusión
 
 Estas consultas te proporcionan una base sólida para comenzar a monitorizar y analizar el rendimiento de servidores utilizando Prometheus. Asegúrate de ajustar las consultas según tus necesidades específicas y las métricas disponibles en tu entorno.
