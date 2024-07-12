@@ -39,7 +39,7 @@ nvidia_gpu_duty_cycle
 Consulta para obtener el uso de la red por interfaz de red en diferentes servidores.
 
 ```promql
-sum by (instance, device) (rate node_network_receive_bytes_total[5m]))
+sum by (instance, device) (irate(node_network_receive_bytes_total[5m]))
 ```
 
 #### Explicación:

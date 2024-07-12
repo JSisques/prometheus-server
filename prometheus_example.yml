@@ -26,4 +26,10 @@ scrape_configs:
 
     static_configs:
       - targets: ["192.168.x.y:9100"]
+        labels:
+          service: "server1"
+          instance: "server1"
       - targets: ["localhost:9100"]
+        labels:
+          service: "localhost"
+          instance: "localhost"
