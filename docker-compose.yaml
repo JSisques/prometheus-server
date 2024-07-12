@@ -4,6 +4,8 @@ services:
     image: prom/prometheus
     hostname: prometheus-server
     container_name: prometheus-server
+    environment:
+      - TZ=${TZ}
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - ./rules.yml:/etc/prometheus/rules.yml
@@ -15,6 +17,8 @@ services:
     image: prom/node-exporter
     hostname: prometheus-node-exporter
     container_name: prometheus-node-exporter
+    environment:
+      - TZ=${TZ}
     networks:
       - prometheus
     ports:
@@ -23,6 +27,8 @@ services:
     image: prom/alertmanager
     hostname: prometheus-alertmanager
     container_name: prometheus-alertmanager
+    environment:
+      - TZ=${TZ}
     volumes:
       - /alertmanager.yml:/alertmanager/alertmanager.yml
     networks:
