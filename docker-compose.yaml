@@ -4,6 +4,7 @@ services:
     image: prom/prometheus
     hostname: prometheus-server
     container_name: prometheus-server
+    restart: unless-stopped
     environment:
       - TZ=${TZ}
     volumes:
@@ -13,20 +14,21 @@ services:
       - prometheus
     ports:
       - 9090:9090
-  node-exporter:
-    image: prom/node-exporter
-    hostname: prometheus-node-exporter
-    container_name: prometheus-node-exporter
-    environment:
-      - TZ=${TZ}
-    networks:
-      - prometheus
-    ports:
-      - 9100:9100
+  # node-exporter:
+  #   image: prom/node-exporter
+  #   hostname: prometheus-node-exporter
+  #   container_name: prometheus-node-exporter
+  #   environment:
+  #     - TZ=${TZ}
+  #   networks:
+  #     - prometheus
+  #   ports:
+  #     - 9100:9100
   alert-manager:
     image: prom/alertmanager
     hostname: prometheus-alertmanager
     container_name: prometheus-alertmanager
+    restart: unless-stopped
     environment:
       - TZ=${TZ}
     volumes:
