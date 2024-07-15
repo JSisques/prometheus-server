@@ -33,3 +33,12 @@ scrape_configs:
         labels:
           service: "localhost"
           instance: "localhost"
+
+  - job_name: "jenkins"
+    scrape_interval: 15s
+    metrics_path: /prometheus
+    static_configs:
+      - targets: ["192.168.x.y:8080"]
+        labels:
+          service: "jenkins"
+          instance: "jenkins"
