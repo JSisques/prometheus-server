@@ -2,11 +2,11 @@
 
 # 📊 Prometheus Server
 
-Prometheus Server es un repositorio que facilita la configuración de un servidor Prometheus, junto con Node Exporter y Alertmanager, utilizando Docker Compose.
+Prometheus Server es un repositorio que facilita la configuración de un servidor Prometheus, junto con Alertmanager, utilizando Docker Compose.
 
 ## 📝 Descripción
 
-Este repositorio contiene un Docker Compose que configura un entorno completo de monitoreo con Prometheus, Node Exporter y Alertmanager. Incluye archivos de configuración para Prometheus (`prometheus.yml` y `rules.yml`) y Alertmanager (`alertmanager.yml`).
+Este repositorio contiene un Docker Compose que configura un entorno completo de monitoreo con Prometheus y Alertmanager. Incluye archivos de configuración para Prometheus (`prometheus.yml` y `rules.yml`) y Alertmanager (`alertmanager.yml`).
 
 ## 🛠️ Instalación
 
@@ -41,20 +41,19 @@ cd prometheus-server
 docker-compose up -d
 ```
 
-Esto iniciará los contenedores de Prometheus Server, Node Exporter y Alertmanager en segundo plano.
+Esto iniciará los contenedores de Prometheus Server y Alertmanager en segundo plano.
 
 ## 🚀 Uso
 
 Una vez que los contenedores estén en ejecución, puedes acceder a las siguientes interfaces:
 
 - Prometheus: [http://localhost:9090](http://localhost:9090)
-- Node Exporter: [http://localhost:9100/metrics](http://localhost:9100/metrics)
 - Alertmanager: [http://localhost:9093](http://localhost:9093)
 
 ## 👨‍💻 Autor
 
 - Nombre: Javier Plaza Sisqués
-- GitHub: JSisques
+- GitHub: [JSisques](https://github.com/JSisques)
 
 ## 📄 Archivos de Configuración
 
@@ -64,4 +63,8 @@ En este repositorio se incluyen varios archivos de configuración para personali
 - `rules.yml`: Reglas de alerta personalizadas para Prometheus.
 - `alertmanager.yml`: Configuración de notificaciones para Alertmanager.
 
-¡Empieza a monitorear tus aplicaciones y sistemas con Prometheus de manera sencilla! 🎉
+---
+
+<p align="center">
+  <q>¡Empieza a monitorear tus aplicaciones y sistemas con Prometheus de manera sencilla! 🎉</q>
+</p>
