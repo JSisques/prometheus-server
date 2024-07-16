@@ -62,9 +62,3 @@ En este repositorio se incluyen varios archivos de configuración para personali
 - `prometheus.yml`: Configuración principal de Prometheus.
 - `rules.yml`: Reglas de alerta personalizadas para Prometheus.
 - `alertmanager.yml`: Configuración de notificaciones para Alertmanager.
-
----
-
-<p align="center">
-  <cite>¡Empieza a monitorear tus aplicaciones y sistemas con Prometheus de manera sencilla! 🎉</cite>
-</p>
