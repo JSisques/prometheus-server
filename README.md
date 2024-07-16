@@ -1,3 +1,5 @@
+![Banner](./img/prometheus-server.png)
+
 # 📊 Prometheus Server
 
 Prometheus Server es un repositorio que facilita la configuración de un servidor Prometheus, junto con Node Exporter y Alertmanager, utilizando Docker Compose.
