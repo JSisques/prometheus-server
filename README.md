@@ -66,5 +66,5 @@ En este repositorio se incluyen varios archivos de configuración para personali
 ---
 
 <p align="center">
-  <q>¡Empieza a monitorear tus aplicaciones y sistemas con Prometheus de manera sencilla! 🎉</q>
+  <cite>¡Empieza a monitorear tus aplicaciones y sistemas con Prometheus de manera sencilla! 🎉</cite>
 </p>
