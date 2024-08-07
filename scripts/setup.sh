@@ -1,5 +1,18 @@
 #!/bin/bash
 
+# Función para añadir una entrada al crontab si no existe
+add_cron() {
+    local cron_line="$1"
+    local cron_file="/etc/crontab"
+
+    if ! grep -qF "$cron_line" "$cron_file"; then
+        echo "Añadiendo al crontab: $cron_line"
+        echo "$cron_line" | sudo tee -a "$cron_file" > /dev/null
+    else
+        echo "La entrada ya existe en el crontab: $cron_line"
+    fi
+}
+
 # Paso 1: Actualizar apt-get
 echo "Paso 1: Actualizando apt-get..."
 sudo apt-get update
@@ -34,3 +47,14 @@ fi
 echo "Paso 5: Iniciando el servidor de Prometheus con Docker Compose..."
 docker-compose up -d
 echo "El servidor de Prometheus se está ejecutando en segundo plano."
+
+# Paso 6: Añadir entradas al crontab
+echo "Paso 6: Añadiendo entradas al crontab..."
+
+# Línea para reiniciar el sistema a las 08:00 todos los días
+add_cron "00 8    * * *   root    reboot"
+
+# Línea para ejecutar el script de backup a las 07:00 todos los días
+add_cron "00 7    * * *   root    sh /home/$USER/prometheus-server/scripts/backup.sh"
+
+echo "Entradas añadidas al crontab (si no estaban ya presentes)."
