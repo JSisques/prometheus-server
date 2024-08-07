@@ -86,7 +86,7 @@ fi
 MOUNT_CMD="sudo mount -t cifs //${IP_SERVIDOR}/${NOMBRE_CARPETA} ${PUNTO_MONTURA}"
 
 if [ -n "$USUARIO" ]; then
-    MOUNT_CMD="${MOUNT_CMD} -o user=${USUARIO},password=${CONTRASENA},vers=3.0"
+    MOUNT_CMD="${MOUNT_CMD} -o user=${USUARIO},password=${CONTRASENA}"
     echo "Configurando montaje con usuario ${USUARIO} y contraseña."
 else
     echo "Configurando montaje sin autenticación de usuario."
@@ -107,7 +107,7 @@ if grep -q "${FSTAB_ENTRY}" /etc/fstab; then
 else
     echo "La entrada no existe en /etc/fstab. Añadiéndola..."
     if [ -n "$USUARIO" ]; then
-        echo "${FSTAB_ENTRY} -o username=${USUARIO},password=${CONTRASENA},vers=3.0" | sudo tee -a /etc/fstab > /dev/null
+        echo "${FSTAB_ENTRY} -o username=${USUARIO},password=${CONTRASENA}" | sudo tee -a /etc/fstab > /dev/null
     else
         echo "${FSTAB_ENTRY}" | sudo tee -a /etc/fstab > /dev/null
     fi
