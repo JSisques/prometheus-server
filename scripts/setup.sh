@@ -31,21 +31,30 @@ echo "Paquetes no necesarios eliminados."
 # Paso 3: Verificar e instalar Docker si no está presente
 if ! command -v docker &> /dev/null; then
     echo "Paso 3: Docker no está instalado. Instalando Docker..."
-    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo curl -fsSL https://get.docker.com -o get-docker.sh
     sudo sh get-docker.sh
     sudo usermod -aG docker $USER
     echo "Docker instalado y usuario añadido al grupo docker."
 else
-    echo "Paso 3: Docker ya está instalado."
+    echo "Paso 3: Docker ya está instalado. Actualizando Docker..."
+    sudo curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+    echo "Docker actualizado."
 fi
 
 # Paso 4: Verificar e instalar Docker Compose si no está presente
 if ! command -v docker-compose &> /dev/null; then
     echo "Paso 4: Docker Compose no está instalado. Instalando Docker Compose..."
-    sudo apt-get install docker-compose -y
-    echo "Docker Compose instalado."
+    DOCKER_COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep tag_name | cut -d '"' -f 4)
+    sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    echo "Docker Compose instalado a la versión $DOCKER_COMPOSE_VERSION."
 else
-    echo "Paso 4: Docker Compose ya está instalado."
+    echo "Paso 4: Docker Compose ya está instalado. Actualizando Docker Compose..."
+    DOCKER_COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep tag_name | cut -d '"' -f 4)
+    sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    echo "Docker Compose actualizado a la versión $DOCKER_COMPOSE_VERSION."
 fi
 
 # Paso 5: Ejecutar Docker Compose para iniciar el servidor de Prometheus
