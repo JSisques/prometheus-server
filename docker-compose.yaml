@@ -4,16 +4,17 @@ services:
     image: prom/prometheus
     hostname: prometheus-server
     container_name: prometheus-server
-    restart: unless-stopped
     environment:
       - TZ=${TZ}
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./rules.yml:/etc/prometheus/rules.yml
+      - ./data:/prometheus
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./config/rules.yml:/etc/prometheus/rules.yml
     networks:
       - prometheus
     ports:
       - 9090:9090
+    restart: unless-stopped
   # node-exporter:
   #   image: prom/node-exporter
   #   hostname: prometheus-node-exporter
@@ -24,19 +25,19 @@ services:
   #     - prometheus
   #   ports:
   #     - 9100:9100
-  alert-manager:
-    image: prom/alertmanager
-    hostname: prometheus-alertmanager
-    container_name: prometheus-alertmanager
-    restart: unless-stopped
-    environment:
-      - TZ=${TZ}
-    volumes:
-      - /alertmanager.yml:/alertmanager/alertmanager.yml
-    networks:
-      - prometheus
-    ports:
-      - 9093:9093
+#   alert-manager:
+#     image: prom/alertmanager
+#     hostname: prometheus-alertmanager
+#     container_name: prometheus-alertmanager
+#     restart: unless-stopped
+#     environment:
+#       - TZ=${TZ}
+#     volumes:
+#       - /alertmanager.yml:/alertmanager/alertmanager.yml
+#     networks:
+#       - prometheus
+#     ports:
+#       - 9093:9093
 networks:
   prometheus:
     driver: bridge

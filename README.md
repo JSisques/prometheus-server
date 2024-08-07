@@ -31,14 +31,14 @@ cd prometheus-server
 
 3. Modifica los archivos de configuración según sea necesario:
 
-- `prometheus.yml`: Configura los targets y reglas de Prometheus.
-- `rules.yml`: Define las reglas de alerta para Prometheus.
-- `alertmanager.yml`: Configura las notificaciones de alertas en Alertmanager.
+- `./config/prometheus.yml`: Configura los targets y reglas de Prometheus.
+- `./config/rules.yml`: Define las reglas de alerta para Prometheus.
+- `./config/alertmanager.yml`: Configura las notificaciones de alertas en Alertmanager.
 
-4. Ejecuta Docker Compose para iniciar los servicios:
+1. Ejecuta el script de instalación:
 
 ```bash
-docker-compose up -d
+sh ./scripts/setup.sh
 ```
 
 Esto iniciará los contenedores de Prometheus Server y Alertmanager en segundo plano.

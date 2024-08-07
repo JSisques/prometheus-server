@@ -1,4 +1,8 @@
 .env
-prometheus.yml
-rules.yml
-alertmanager.yml
+data
+CHANGELOG.pdf
+README.pdf
+LICENSE.pdf
+QUERIES.pdf
+config/rules.yml
+config/prometheus.yml
