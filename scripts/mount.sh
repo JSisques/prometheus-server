@@ -86,7 +86,7 @@ fi
 MOUNT_CMD="sudo mount -t cifs //${IP_SERVIDOR}/${NOMBRE_CARPETA} ${PUNTO_MONTURA}"
 
 if [ -n "$USUARIO" ]; then
-    MOUNT_CMD="${MOUNT_CMD} -o username=${USUARIO},password=${CONTRASENA},vers=3.0"
+    MOUNT_CMD="${MOUNT_CMD} -o user=${USUARIO},password=${CONTRASENA},vers=3.0"
     echo "Configurando montaje con usuario ${USUARIO} y contraseña."
 else
     echo "Configurando montaje sin autenticación de usuario."
