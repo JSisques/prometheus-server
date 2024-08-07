@@ -82,22 +82,27 @@ else
     echo "El punto de montaje $PUNTO_MONTURA ya existe."
 fi
 
-# Intentar montar el volumen
-MOUNT_CMD="sudo mount -t cifs //${IP_SERVIDOR}/${NOMBRE_CARPETA} ${PUNTO_MONTURA}"
-
-if [ -n "$USUARIO" ]; then
-    MOUNT_CMD="${MOUNT_CMD} -o user=${USUARIO},password=${CONTRASENA}"
-    echo "Configurando montaje con usuario ${USUARIO} y contraseña."
+# Verificar si el volumen ya está montado
+if mountpoint -q "$PUNTO_MONTURA"; then
+    echo "El volumen ya está montado en $PUNTO_MONTURA."
 else
-    echo "Configurando montaje sin autenticación de usuario."
-fi
-
-echo "Ejecutando el comando de montaje: $MOUNT_CMD"
-if eval $MOUNT_CMD; then
-    echo "Volumen montado correctamente en ${PUNTO_MONTURA}."
-else
-    echo "Error al montar el volumen."
-    exit 1
+    # Construir el comando de montaje
+    MOUNT_CMD="sudo mount -t cifs //${IP_SERVIDOR}/${NOMBRE_CARPETA} ${PUNTO_MONTURA}"
+    
+    if [ -n "$USUARIO" ]; then
+        MOUNT_CMD="${MOUNT_CMD} -o user=${USUARIO},password=${CONTRASENA}"
+        echo "Configurando montaje con usuario ${USUARIO} y contraseña."
+    else
+        echo "Configurando montaje sin autenticación de usuario."
+    fi
+    
+    echo "Ejecutando el comando de montaje: $MOUNT_CMD"
+    if eval $MOUNT_CMD; then
+        echo "Volumen montado correctamente en ${PUNTO_MONTURA}."
+    else
+        echo "Error al montar el volumen."
+        exit 1
+    fi
 fi
 
 # Verificar si la entrada en /etc/fstab ya existe
