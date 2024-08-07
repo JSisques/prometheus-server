@@ -14,7 +14,7 @@ services:
       - prometheus
     ports:
       - 9090:9090
-    privileged: true
+    user: root
     restart: unless-stopped
   # node-exporter:
   #   image: prom/node-exporter
