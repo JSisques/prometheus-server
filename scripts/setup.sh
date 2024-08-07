@@ -51,8 +51,8 @@ echo "El servidor de Prometheus se está ejecutando en segundo plano."
 # Paso 6: Añadir entradas al crontab
 echo "Paso 6: Añadiendo entradas al crontab..."
 
-# Línea para reiniciar el sistema a las 08:00 todos los días
-add_cron "00 8    * * *   root    reboot"
+# Línea para reiniciar el sistema a las 08:00 una vez por semana
+add_cron "00 8    * * 0   root    reboot"
 
 # Línea para ejecutar el script de backup a las 07:00 todos los días
 add_cron "00 7    * * *   root    sh /home/$USER/prometheus-server/scripts/backup.sh"
