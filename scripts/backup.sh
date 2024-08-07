@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-USER_DIR="/home/$USER/prometheus-server"
+USER_DIR="/home/javi/prometheus-server"
 SOURCE_DIR="$USER_DIR/data"
 BACKUP_DIR="$USER_DIR/backups"
 TIMESTAMP=$(date +"%Y-%m-%d")
