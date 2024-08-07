@@ -16,19 +16,12 @@ CONFIG_ENV="$USER_DIR/.env"
 # Crear directorio de respaldo si no existe
 mkdir -p "$BACKUP_DIR"
 
-# Copiar archivos de configuración al directorio de respaldo si existen
-for file in "$CONFIG_PROMETHEUS" "$CONFIG_RULES" "$CONFIG_ALERTMANAGER" "$CONFIG_ENV"; do
-    if [ -f "$file" ]; then
-        echo "Copiando archivo de configuración: $file"
-        cp "$file" "$BACKUP_DIR/"
-    else
-        echo "Archivo de configuración no encontrado: $file"
-    fi
-done
-
 # Realizar la copia de seguridad de la carpeta principal
-echo "Realizando la copia de seguridad de $SOURCE_DIR..."
-tar -zcvf "$BACKUP_DIR/$BACKUP_FILE" -C "$SOURCE_DIR" .
+echo "Realizando la copia de seguridad de $SOURCE_DIR y archivos de configuración..."
+
+# Comando tar para incluir la carpeta principal y archivos de configuración
+tar -zcvf "$BACKUP_DIR/$BACKUP_FILE" -C "$SOURCE_DIR" . \
+    "$CONFIG_PROMETHEUS" "$CONFIG_RULES" "$CONFIG_ALERTMANAGER" "$CONFIG_ENV"
 
 # Imprimir mensaje de éxito
 echo "Copia de seguridad realizada con éxito: $BACKUP_DIR/$BACKUP_FILE"
