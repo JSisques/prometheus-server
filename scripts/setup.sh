@@ -23,6 +23,11 @@ echo "Paso 2: Upgrandeando el sistema..."
 sudo apt-get upgrade -y
 echo "Sistema upgrandeado."
 
+# Paso 2.1: Eliminar paquetes no necesarios
+echo "Paso 2.1: Eliminando paquetes no necesarios..."
+sudo apt autoremove -y
+echo "Paquetes no necesarios eliminados."
+
 # Paso 3: Verificar e instalar Docker si no está presente
 if ! command -v docker &> /dev/null; then
     echo "Paso 3: Docker no está instalado. Instalando Docker..."
@@ -55,6 +60,6 @@ echo "Paso 6: Añadiendo entradas al crontab..."
 add_cron "00 8    * * 0   root    reboot"
 
 # Línea para ejecutar el script de backup a las 07:00 todos los días
-add_cron "00 7    * * *   root    sh /home/$USER/prometheus-server/scripts/backup.sh"
+add_cron "00 7    * * *   root    sh /home/javi/prometheus-server/scripts/backup.sh"
 
 echo "Entradas añadidas al crontab (si no estaban ya presentes)."
